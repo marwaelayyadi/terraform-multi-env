@@ -13,9 +13,12 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-      
+        # name: TF_VAR_atlantis_repository 
+        # command: 'echo "GitHub Actor Username:$TF_VAR_github_actor_username"'
+
       - name: Display GitHub Actor Username
-        run: echo "GitHub Actor Username: $TF_VAR_github_actor_username"
+        run: 'echo "GitHub Actor Username: $TF_VAR_github_actor_username"
+
 
 jobs:
   terraform:
