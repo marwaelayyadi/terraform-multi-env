@@ -15,16 +15,16 @@ jobs:
         uses: actions/checkout@v2
         # name: TF_VAR_atlantis_repository 
         # command: 'echo "GitHub Actor Username:$TF_VAR_github_actor_username"'
-      - name: Apply Mapping Rules
-        run: |
-          MAP_JSON='{
-            "marwaelayyadi": "123-$TF_VAR_github_actor_username",
-            "y": "456-$TF_VAR_github_actor_username",
-            "z": "789-$TF_VAR_github_actor_username"
-          }'
-          MAPPED_USERNAME=$(echo "$MAP_JSON" | jq -r --arg input "$TF_VAR_github_actor_username" '.[$input // "default"]')
-          'echo "Mapped GitHub Actor Username: $MAPPED_USERNAME"'
-          'echo "$TF_VAR_github_actor_username=$MAPPED_USERNAME"' >> $GITHUB_ENV
+      # - name: Apply Mapping Rules
+        # run: |
+        #   MAP_JSON='{
+        #     "marwaelayyadi": "123-$TF_VAR_github_actor_username",
+        #     "y": "456-$TF_VAR_github_actor_username",
+        #     "z": "789-$TF_VAR_github_actor_username"
+        #   }'
+        #   MAPPED_USERNAME=$(echo "$MAP_JSON" | jq -r --arg input "$TF_VAR_github_actor_username" '.[$input // "default"]')
+        #   'echo "Mapped GitHub Actor Username: $MAPPED_USERNAME"'
+        #   'echo "$TF_VAR_github_actor_username=$MAPPED_USERNAME"' >> $GITHUB_ENV
       
       - name: Display GitHub Actor Username
         run: 'echo "GitHub Actor Username: $TF_VAR_github_actor_username"'
