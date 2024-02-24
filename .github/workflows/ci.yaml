@@ -17,14 +17,20 @@ jobs:
         # command: 'echo "GitHub Actor Username:$TF_VAR_github_actor_username"'
       - name: Apply Mapping Rules
         run: |
+          # Define the mapping JSON string
           MAP_JSON='{
-            "marwaelayyadi": "123-$TF_VAR_github_actor_username",
-            "y": "456-$TF_VAR_github_actor_username",
-            "z": "789-$TF_VAR_github_actor_username"
+            "x": "123-",
+            "y": "456-",
+            "z": "789-"
           }'
+          # Parse the JSON object and retrieve the mapped value
           MAPPED_USERNAME=$(echo "$MAP_JSON" | jq -r --arg input "$TF_VAR_github_actor_username" '.[$input // "default"]')
-          'echo "Mapped GitHub Actor Username: $MAPPED_USERNAME"'
-        #   'echo "$TF_VAR_github_actor_username=$MAPPED_USERNAME"' >> $GITHUB_ENV
+          # Combine the mapped value with the GitHub actor's username
+          FINAL_USERNAME="${MAPPED_USERNAME}${TF_VAR_github_actor_username}"
+          
+          # Display the mapped username
+          'echo "Mapped GitHub Actor Username: $FINAL_USERNAME"'
+
       
       - name: Display GitHub Actor Username
         run: 'echo "GitHub Actor Username: $TF_VAR_github_actor_username"'
