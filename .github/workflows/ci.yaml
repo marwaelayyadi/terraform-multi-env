@@ -23,8 +23,8 @@ jobs:
             "z": "789-$TF_VAR_github_actor_username"
           }'
           MAPPED_USERNAME=$(echo "$MAP_JSON" | jq -r --arg input "$TF_VAR_github_actor_username" '.[$input // "default"]')
-          echo "Mapped GitHub Actor Username: $MAPPED_USERNAME"
-          echo "TF_VAR_github_actor_username=$MAPPED_USERNAME" >> $GITHUB_ENV
+          'echo "Mapped GitHub Actor Username: $MAPPED_USERNAME"'
+          'echo "$TF_VAR_github_actor_username=$MAPPED_USERNAME"' >> $GITHUB_ENV
       
       - name: Display GitHub Actor Username
         run: 'echo "GitHub Actor Username: $TF_VAR_github_actor_username"'
