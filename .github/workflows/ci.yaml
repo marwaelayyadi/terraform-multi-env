@@ -23,13 +23,18 @@ jobs:
             "y": "456-",
             "z": "789-"
           }'
+
           # Parse the JSON object and retrieve the mapped value
           MAPPED_USERNAME=$(echo "$MAP_JSON" | jq -r --arg input "$TF_VAR_github_actor_username" '.[$input // "default"]')
+
           # Combine the mapped value with the GitHub actor's username
           FINAL_USERNAME="${MAPPED_USERNAME}${TF_VAR_github_actor_username}"
           
           # Display the mapped username
-          'echo "Mapped GitHub Actor Username: $FINAL_USERNAME"'
+          echo "Mapped GitHub Actor Username: $FINAL_USERNAME"
+          
+          # Set the mapped username as TF_VAR_github_actor_username
+          echo "TF_VAR_github_actor_username=$FINAL_USERNAME" >> $GITHUB_ENV
 
       
       - name: Display GitHub Actor Username
