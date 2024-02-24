@@ -3,7 +3,19 @@ name: "GitHub Actions Example"
 
 "on":
   pull_request:
-  push: { branches: [main] }
+  push: { branches: [marwa] }
+
+jobs:
+  deploy_terraform:
+    runs-on: ubuntu-latest
+    env:
+      TF_VAR_github_actor_username: ${{ github.actor }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      
+      - name: Display GitHub Actor Username
+        run: echo "GitHub Actor Username: $TF_VAR_github_actor_username"
 
 jobs:
   terraform:
