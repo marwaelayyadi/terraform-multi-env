@@ -19,7 +19,7 @@ jobs:
         run: |
           # Define the mapping JSON string
           MAP_JSON='{
-            "x": "123-",
+            "marwaelayyadi": "123-",
             "y": "456-",
             "z": "789-"
           }'
